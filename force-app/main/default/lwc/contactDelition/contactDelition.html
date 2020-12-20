@@ -1,0 +1,23 @@
+<template>
+    <div class="slds-m-around_large">
+        <!-- <p if:true={isLoaded}>Content has been loaded.</p> -->
+        <div if:false={isLoaded} class="slds-is-relative">
+            <lightning-spinner
+                alternative-text="Loading...">
+            </lightning-spinner>
+        </div>
+    </div>
+    <lightning-card>
+        <lightning-button class="button" variant="destructive" label="Delete Contacts" title="Destructive action" onclick={deleteContacts}> class="slds-m-left_x-small"></lightning-button>
+        <template if:true={contacts}>
+            <lightning-datatable 
+                key-field="Id"  
+                data={contacts}
+                columns={columns}
+                onclick={handleCheckBoxClick}>
+            </lightning-datatable>
+        </template>
+        <br/>
+        <c-paginator  onprevious={previousControllerHandler} onnext={nextControllerHandler} onpagesizechange={changeControllerHandler} onfirstpage={firstPageControllerHandler} onlastpage={lastPageControllerHandler}></c-paginator>
+    </lightning-card>
+</template>
