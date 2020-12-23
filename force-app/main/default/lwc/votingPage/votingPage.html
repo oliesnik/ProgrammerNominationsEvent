@@ -1,43 +1,37 @@
 <template>
     <lightning-card>
-        <template if:false={hasVoted}>
-            <lightning-input type="email" label="Email address" onchange={handleEmailChange}></lightning-input>
+        <template  if:false={hasVoted}>
+            
+            <lightning-input  type="email" label="Email address" onchange={handleEmailChange}></lightning-input>
+            
+            <br>
             <template if:true={campaign}>
                 <lightning-layout-item>
-                    <!-- <lightning-combobox
-                    name="campaign"
-                    label="Campaign"
-                    value={selectedCampaign}
-                    placeholder="Select Campaign"
-                    options={campaignOptions}
-                    onchange={handleCampaignChange} ></lightning-combobox> -->
-                    <p>{campaign.Name}</p>
+                    <p class="campaignStyle">{campaign.Name}</p><br><br>
                 </lightning-layout-item>
                 <template if:true={nominations}>
-                        <!-- <lightning-combobox
-                        name="nomination"
-                        label="Nomination"
-                        value={selectedNomination}
-                        placeholder="Select Nomination"
-                        options={nominationOptions}
-                        onchange={handleNominationChange}>
-                        </lightning-combobox> -->
                     <template for:each={nominations} for:item="nomination">
                         <div key={nomination.Id}>
-                            <p >{nomination.Name}</p>
+                            <p class="nominationStyle">{nomination.Name}</p>
                             <p hidden>{updateContacts}</p>
                             <template if:true={nomination.contacts}>
                                 <template for:each={nomination.contacts} for:item="contact">
-                                    <lightning-layout-item onclick={handleClickViewForm} data-id1={contact.Id} data-id2={nomination.Id} key={contact} size="2" class="slds-var-p-around_x-small">
+                                    
+                                <lightning-layout multiple-rows key={contact.id}>
+                                    <lightning-layout-item onclick={handleClickViewForm} data-id1={contact.Id} data-id2={nomination.Id} key={contact} size="6" padding="around-small">
                                         <lightning-record-view-form record-id={contact.Id} object-api-name="Contact">
-                                            <div class="slds-box"> 
+                                            <div class="custom-box slds-box slds-p-around_medium" > 
                                             <lightning-output-field field-name="FirstName">
                                             </lightning-output-field>
                                             <lightning-output-field field-name="LastName">
                                             </lightning-output-field>
+                                            <!-- <lightning-output-field field-name="Description">
+                                            </lightning-output-field> -->
                                             </div>
                                         </lightning-record-view-form>
                                     </lightning-layout-item>
+                                </lightning-layout>
+                                
                                 </template>
 </template>
 <template if:false={nomination.contacts}>

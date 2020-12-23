@@ -1,0 +1,18 @@
+.campaignStyle {
+    text-align: center;
+    color: blueviolet;
+    font-size: x-large;
+    font-style: italic;
+}
+
+.THIS .emailStyle {
+    float: left;
+    color: Black;
+    font-weight: bold;
+}
+
+.nominationStyle {
+    color: blue;
+    font-size: medium;
+    text-align: center;
+}
