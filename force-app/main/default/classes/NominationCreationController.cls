@@ -1,6 +1,4 @@
 public with sharing class NominationCreationController {
-    public NominationCreationController() {
-    }
 
     @AuraEnabled(cacheable=true)
     public static List<Campaign> getCampaignList(){
@@ -11,11 +9,9 @@ public with sharing class NominationCreationController {
         List<Nomination__c> allNominationInCampaign = [SELECT Name FROM Nomination__c WHERE CampaignId__c = :campaignId ];
         for(Nomination__c nominationItem : allNominationInCampaign){
             if(nominationItem.Name.equals(nominationName)){
-                System.debug('If worked!');
                 return true;
             }
         }
-        System.debug('If not worked!');
         return false;
     }
 

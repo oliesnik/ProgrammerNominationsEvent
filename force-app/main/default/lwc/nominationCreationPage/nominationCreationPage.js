@@ -13,7 +13,6 @@ export default class NominationCreationPage extends LightningElement {
     }
 
     handleClick(){
-        console.log(this.selectedCampaign + '\n' +this.nomination);
         createNomination({campaignId: this.selectedCampaign, nominationName: this.nomination})
         .then( () => {
             this.dispatchEvent(
@@ -41,7 +40,6 @@ export default class NominationCreationPage extends LightningElement {
 
     get campaignOptions() {
         let listOfOptions = [];
-        console.log(this.campaigns);
         this.campaigns.forEach(cam => {
             listOfOptions.push({ label: cam.Name, value: cam.Id });
         });

@@ -14,6 +14,7 @@ export default class NomineeSelectionPage extends LightningElement {
     selectedCampaign
     selectedContact;
     description;
+    hasVoted = false;
     @wire(getContactList, {queryTerm:'$queryTerm'})
     wiredContacts(response){
         this.contacts = response.data;
@@ -28,7 +29,7 @@ export default class NomineeSelectionPage extends LightningElement {
     }
     
     handleDescriptionChange(evt){
-        this.description = evt.target.value.slice(0,255);
+        this.description = evt.target.value;
     }
 
     handleSearchChange(evt) {
@@ -41,11 +42,11 @@ export default class NomineeSelectionPage extends LightningElement {
     }
 
     handleClickButton(evt) {
-        if(this.description.length < 40){
+        if(!this.description){
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error',
-                    message: 'Description has to be min 20 letters!',
+                    message: 'Fill all required fields!',
                     variant: 'error',
                 })
             );
@@ -53,6 +54,7 @@ export default class NomineeSelectionPage extends LightningElement {
 
             createNominee({nominationId: this.selectedNomination, contactId: this.selectedContact, description: this.description})
             .then( () => {
+                this.hasVoted = true;
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
@@ -74,13 +76,13 @@ export default class NomineeSelectionPage extends LightningElement {
     }
 
     handleClickViewForm(evt) {
+        evt.currentTarget.style.backgroundColor = 'rgb(40, 127, 241)';
         this.selectedContact = evt.currentTarget.dataset.id;
         console.log (this.selectedContact);
     }
 
     get nominationOptions() {
         let listOfOptions = [];
-        console.log(this.nominations);
         this.nominations.forEach(nom => {
             listOfOptions.push({ label: nom.Name, value: nom.Id });
         });

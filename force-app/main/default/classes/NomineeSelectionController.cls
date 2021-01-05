@@ -2,7 +2,7 @@ public with sharing class NomineeSelectionController {
 
     @AuraEnabled (cacheable = true)
     public static List<Contact> getContactList(String queryTerm) {
-        List<Contact> contacts = (Contact[]) [FIND :queryTerm IN NAME FIELDS RETURNING Contact(FirstName,LastName,Department)][0];
+        List<Contact> contacts = (Contact[]) [FIND :queryTerm IN NAME FIELDS RETURNING Contact(FirstName,LastName,Department, Avatar__c)][0];
         return contacts;
     }
 
@@ -19,9 +19,6 @@ public with sharing class NomineeSelectionController {
 
     @AuraEnabled
     public static void createNominee(Id nominationId, Id contactId, String description) {
-        System.debug(nominationId);
-        System.debug(contactId);
-        System.debug(description);
         CandidateNomination__c newNominee = new CandidateNomination__c(NominationId__c = nominationId, Nominees__c = contactId, Description__c = description);
         insert newNominee;
     }
