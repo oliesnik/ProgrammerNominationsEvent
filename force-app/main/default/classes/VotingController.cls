@@ -2,12 +2,15 @@ public with sharing class VotingController {
     
     @AuraEnabled
     public static Map<Id, List<Contact>> getContactList(List<Nomination__c> nominations) {                                                
-        List<CandidateNomination__c> cnWithCurrentNomination = [SELECT NominationId__c, Nominees__c FROM CandidateNomination__c WHERE NominationId__c in :nominations AND Type__c = 'Master']; 
+        List<CandidateNomination__c> cnWithCurrentNomination = [SELECT NominationId__c, Nominees__c 
+                                                                FROM CandidateNomination__c 
+                                                                WHERE NominationId__c in :nominations AND Type__c = 'Master']; 
         Set<Id> nominees = new Set<Id>();
         for(CandidateNomination__c itemCN : cnWithCurrentNomination){
             nominees.add(itemCN.Nominees__c);
         }
-        Map<Id, Contact> contactMap = new Map<Id, Contact>([SELECT Id, FirstName, LastName, Department, Avatar__c FROM Contact WHERE Id IN :nominees]);
+        Map<Id, Contact> contactMap = new Map<Id, Contact>([SELECT Id, FirstName, LastName, Department, Avatar__c 
+                                                            FROM Contact WHERE Id IN :nominees]);
         Map<Id, List<Contact>> nomineesInNomination = new Map<Id, List<Contact>>();
         for(Nomination__c nominationItem : nominations){
             List<Contact> nomineesForNomination = new List<Contact>();
@@ -67,6 +70,8 @@ public with sharing class VotingController {
 
     @AuraEnabled
     public static String getDescription(Id contactId, Id nominationId){
-        return [SELECT Description__c FROM CandidateNomination__c WHERE NominationId__c = :nominationId AND Nominees__c = :contactId AND Type__c = 'Master' LIMIT 1].Description__c;     
+        return [SELECT Description__c FROM CandidateNomination__c 
+        WHERE NominationId__c = :nominationId AND Nominees__c = :contactId AND Type__c = 'Master' LIMIT 1].Description__c;     
     }
+
 }

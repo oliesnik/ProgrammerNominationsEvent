@@ -32,7 +32,6 @@ public with sharing class VotingControllerTest {
         Nomination__c[] resultNominations = VotingController.getNominationList(campaign1.Id);
         Nomination__c[] resultNominations2 = VotingController.getNominationList(campaign2.Id);
         Test.stopTest();
-        //1 nomination was created in SetUp + 5 nomination created in Test = 6
         System.assertEquals(6, resultNominations.size());
         System.assertEquals(1, resultNominations2.size());
     } 
