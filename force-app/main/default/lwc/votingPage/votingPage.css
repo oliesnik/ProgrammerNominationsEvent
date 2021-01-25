@@ -1,17 +1,13 @@
 .campaign-name {
-    text-align: left;
-    width: 30%;
+    text-align: center;
+    width: auto;
     margin: 1%;
     font-weight: normal;
-    font-size: 15px;
+    font-size: 35px;
+    background-color:rgb(155, 255, 255);
 }
 
 .button-submit {
-    margin: 1%;
-}
-
-.email-input {
-    width: 23%;
     margin: 1%;
 }
 
@@ -22,10 +18,10 @@
     margin-left: 1%;
     height: 300px;
     clear: both;
-    background-color: rgb(103, 178, 248);
+    background-color: rgb(175, 207, 236);
 }
 .wrapper:nth-child(odd){
-    background-color: rgb(79, 153, 223);
+    background-color: rgb(175, 207, 236);
 }
 
 .nomonation-title {
@@ -36,7 +32,7 @@
     float: left;
     width: 20%;
     height: 300px;
-    background-color: white;
+    background-color: rgb(175, 207, 236);
 }
 .nomination-picture {
     height: 260px;
@@ -54,7 +50,7 @@
 }
 
 .fields-wrapper:hover {
-    background-color: rgb(186, 243, 189);
+    /* background-color: rgb(186, 243, 189); */
     cursor: pointer;
 }
 
@@ -64,7 +60,7 @@
     width: 100px;
     height: 280px;
     float: left;
-    margin-right: 10px;
+    margin-right: 1em;
 }
 
 .profile-picture {

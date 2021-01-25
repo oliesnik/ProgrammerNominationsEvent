@@ -64,7 +64,8 @@ export default class VotingPage extends LightningElement {
                     variant: 'error',
                 })
             );
-        }else{
+        }
+        else {
         createVote({finalVotes : this.posibleVotes, UUID: this.voterUUID})
         .then( () => {
             this.hasVoted = true;
@@ -89,9 +90,14 @@ export default class VotingPage extends LightningElement {
         }
     }
     handleClickViewForm(evt) {
-        evt.currentTarget.style.backgroundColor = 'rgb(119, 240, 108)';
-        let selectedContact = evt.currentTarget.dataset.id1;
-        let nomination = evt.currentTarget.dataset.id2;
-        this.posibleVotes[nomination] = selectedContact;
+        if (evt.currentTarget.style.backgroundColor === 'rgb(175, 207, 236)') {
+            evt.currentTarget.style.backgroundColor = 'rgb(119, 240, 108)';
+            let selectedContact = evt.currentTarget.dataset.id1;
+            let nomination = evt.currentTarget.dataset.id2;
+            this.posibleVotes[nomination] = selectedContact;
+        } else {
+            evt.currentTarget.style.backgroundColor = 'rgb(175, 207, 236)'
+        }
+        
     }
 }

@@ -4,7 +4,8 @@
             <div>
                 <template if:true={campaign}>
                     <div class='campaign-name'>
-                        <p>Current campaign: {campaign.Name}</p>
+                        <p>Current campaign: </p>
+                        <p>{campaign.Name}</p>
                     </div>
                     <div>
                         <template if:true={nominations}>
@@ -17,7 +18,7 @@
                                     </div>
                                     <template if:true={nomination.contacts}>
                                         <template for:each={nomination.contacts} for:item="contact">
-                                            <lightning-layout-item key={contact} class='fields-wrapper'
+                                            <lightning-layout-item key={contact} class='fields-wrapper' flexibility="auto"
                                                 onclick={handleClickViewForm} data-id1={contact.Id}
                                                 data-id2={nomination.Id}>
                                                 <lightning-record-view-form record-id={contact.Id}
@@ -46,7 +47,7 @@
                                 </div>
                             </template>
                             <div class="button-submit">
-                                <lightning-button variant="brand" label="Submit" title="Primary action"
+                                <lightning-button variant="success" label="Submit" title="Primary action"
                                     onclick={handleClickButton} class='button-final'></lightning-button>
                             </div>
                         </template>

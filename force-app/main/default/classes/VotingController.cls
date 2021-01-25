@@ -34,7 +34,7 @@ public with sharing class VotingController {
     }
 
 
-    public static Id getVoter(String UUID){
+    private static Id getVoter(String UUID){
         try{
             Contact voter = [SELECT Id FROM Contact WHERE UUID__c = :UUID ];
             return voter.Id;
